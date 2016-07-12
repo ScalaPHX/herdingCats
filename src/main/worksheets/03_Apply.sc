@@ -42,7 +42,15 @@ Apply[Option].map(Some(1))(double)
 
 Apply[Option].map(None)(double)
 
+// map arity
+Apply[Option].map2(Some(1), Some(2))(addArity2)
 
+Apply[Option].map3(Some(1), Some(2), Some(3))(addArity3)
+
+// tuple arity
+Apply[Option].tuple2(Some(1), Some(2))
+
+Apply[Option].tuple3(Some(1), Some(2), Some(3))
 
 // compose
 val listOpt = Apply[List] compose Apply[Option]
@@ -51,3 +59,30 @@ val plusOne = (x : Int) => x + 1
 
 listOpt.ap(List(Some(plusOne)))(List(Some(1), None, Some(3)))
 
+// apply builder syntax
+import cats.syntax.cartesian._
+
+def f1(a : Option[Int], b : Option[Int], c : Option[Int]) = ( a |@| b |@| c) map { _ * _ * _}
+
+def f2(a : Option[Int], b : Option[Int], c : Option[Int]) = Apply[Option].map3(a,b,c)(_ * _ * _)
+
+f1(Some(1), Some(2), Some(3))
+
+f2(Some(1), Some(2), Some(3))
+
+// builder instances have map, ap & tupled methods
+val option2 = Option(1) |@| Option(2)
+
+val option3 = option2 |@| Option.empty[Int]
+
+option2 map addArity2
+
+option3 map addArity3
+
+option2 apWith Some(addArity2)
+
+option3 apWith Some(addArity3)
+
+option2.tupled
+
+option3.tupled
