@@ -17,6 +17,8 @@ Foldable[List].reduceRightToOption(List[Int]())(_.toString)((i,s) => Later(s.val
 
 Foldable[Set].find(Set(1,2,3))(_ > 2)
 
+Foldable[Set].find(Set(1,2,3))(_ > 0)
+
 Foldable[Set].exists(Set(1,2,3))(_ > 2)
 
 Foldable[Set].forall(Set(1,2,3))(_ < 4)
@@ -31,8 +33,11 @@ Foldable[List].nonEmpty(List(1,2))
 
 Foldable[Option].toList(None)
 
+Foldable[List].toList(List(1,2,3))
+
 def parseInt(s : String) : Option[Int] = scala.util.Try(Integer.parseInt(s)).toOption
 
+// traverses the List for 'effect' and not result - gives us a ()
 Foldable[List].traverse_(List("1", "2"))(parseInt)
 
 Foldable[List].traverse_(List("1", "A"))(parseInt)

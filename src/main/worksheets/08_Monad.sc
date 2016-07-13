@@ -1,4 +1,5 @@
 import cats._
+import cats.implicits._
 
 Option(Option(1)).flatten
 
@@ -19,4 +20,5 @@ implicit val listMonad = new Monad[List] {
 }
 
 //ifM - lifts an if statement into the monadic context
+Monad[Option].ifM(Option(true))(Option("truthy"), Option("falsy"))
 Monad[List].ifM(List(true, false, true))(List(1,2), List(3,4))
