@@ -1,6 +1,11 @@
-import org.scalaphx.herdingCats.{Show, Logger}
 
-//Logger.log("Hi there!")
+trait Show[A] {
+  def show(f : A): String
+}
+
+object Logger {
+  def log[A](a : A)(implicit s : Show[A]) = println(s.show(a))
+}
 
 implicit val stringShow = new Show[String] {
   def show(s: String) = s

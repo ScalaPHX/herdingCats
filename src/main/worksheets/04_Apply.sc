@@ -1,3 +1,12 @@
+/**
+  * Apply extends Functor and adds a new function - ap
+  *
+  * The ap function is similar to map - we are still transforming a value in a context.
+  * (A context may be an Option, List or Future)
+  * The difference is that for ap, the function that does the tranformation is of type F[A => B] whereas for map it is A => B
+  */
+
+
 import cats._
 
 val intToString : Int => String = _.toString
@@ -35,7 +44,7 @@ Apply[Option].ap3(Some(addArity3))(Some(1), Some(2), Some(3))
 Apply[Option].ap2(Some(addArity2))(Some(1), None)
 
 
-// map
+// since we are a Functor, we get map as well...
 Apply[Option].map(Some(1))(intToString)
 
 Apply[Option].map(Some(1))(double)

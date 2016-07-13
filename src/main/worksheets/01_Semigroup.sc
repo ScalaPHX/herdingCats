@@ -1,6 +1,16 @@
 import cats._
 import cats.implicits._
 
+/**
+  * A semigroup for a type A has a single operation - combine
+  *
+  * combine takes two values of type A and returns the a value of type A
+  *
+  * This is guaranteed to be associative
+  */
+
+// combine is generally considered concatenation...
+
 Semigroup[Int].combine(1,2)
 
 Semigroup[List[Int]].combine(List(1,2,3), List(4,5,6))

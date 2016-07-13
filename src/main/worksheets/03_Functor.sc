@@ -1,11 +1,23 @@
 import cats._
 
+/**
+  * What is a functor?
+  *
+  * Type class that involves types that have one 'hole' - i.e. types that have the shape F[?]
+  * i.e. Option, List & Future
+  *
+  * Contains a single operation, named: map
+  *
+  * def map[A,B](fa : F[A])(f : A => B) : F[B]
+  *
+  * Functor is short for 'Covariant functor'
+  *
+  */
 
 // normal scala map
 val numbers = List(1,2,3)
 numbers.map(_ + 1) // increment each in the list by 1
 
-// Cats Functor
 
 implicit val optionFunctor : Functor[Option] = new Functor[Option] {
   def map[A,B](fa : Option[A])(f : A => B) = fa map f
@@ -21,10 +33,10 @@ implicit val listFunctor : Functor[List] = new Functor[List] {
 
 Functor[List].map(numbers)(_ + 1)
 
-// NOTE - not sure where In comes from - it was in the example and IntelliJ can't find it...
-//implicit def function1Functor[In] : Functor[(In) => ?] = new Functor[(In) => ?] {
-//  def map[A, B](fa: (In) => A)(f: (A) => B) = fa andThen f
-//}
+// NOTE - you may also use a functor with types that don't have a map, just use andThen to implement
+//        Doing this requires the kind-projector compiler plugin, which I have chosen not to for simplicity's sake
+
+// Functor map...
 
 val len : String => Int = _.length
 
@@ -53,4 +65,3 @@ optList.map(Some(List(1,2,3)))(_ + 1)
 val listOptList = listOpt compose Functor[List]
 
 listOptList.map(List(Some(List(1,2)), None, Some(List(3,4))))(_ + 1)
-
