@@ -1,7 +1,21 @@
-// Problem:
-
 import cats.data.Xor
+import cats.implicits._
+/**
+  *  Traverse - a Functor that extends Foldable and adds a traverse method.
+  *
+  *  Given a function that returns a G effect, continue this effect through the running of
+  *  this function on all the values in F, returning an F[B] in a G context.
+  *
+  *  Foldable's traverse_ always returns a Unit in context of F
+  *  Traverse's traverse returns a value in context of the function being traversed (G)
+  */
 
+
+def myParseInt(s: String): Option[Int] = Xor.catchOnly[NumberFormatException](s.toInt).toOption
+List("1", "2", "3").traverse(myParseInt)
+List("1", "two", "3").traverse(myParseInt)
+
+// Real life problem:
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
@@ -60,17 +74,3 @@ def writeManyToStore(data: List[Data]) = data.traverse(writeToStore)
 
 // so use Foldable.traverse_
 def writeManyToStoreF(data : List[Data]) = data.traverse_(writeToStore)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
