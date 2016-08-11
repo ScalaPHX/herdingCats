@@ -22,3 +22,5 @@ implicit def optionShow[A](implicit sa : Show[A]) = new Show[Option[A]] {
 }
 
 Logger.log(Option("Logging an option!"))
+
+Logger.log(Option.empty[String])

@@ -48,6 +48,8 @@ val lenOption : Option[String] => Option[Int] = Functor[Option].lift(len)
 
 lenOption(Some("abcd"))
 
+lenOption(Some(""))
+
 // fproduct - pairs a value with the result of applying function to that value
 val source = List("a", "aa", "b", "ccccc")
 

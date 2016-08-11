@@ -33,4 +33,4 @@ Monad[List].flatMap(List(1, 2, 3))(x ⇒ List(x, x))
 //ifM - lifts an if statement into the monadic context
 //    - provides the ablity to choose later operations in sequence based on the results of earlier ones
 Monad[Option].ifM(Option(true))(Option("truthy"), Option("falsy"))
-Monad[List].ifM(List(true, false, true))(List(1,2), List(3,4))
+Monad[List].ifM(List(true, false, false))(List(1,2), List(3,4))

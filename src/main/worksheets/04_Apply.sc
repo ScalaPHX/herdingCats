@@ -3,7 +3,7 @@
   *
   * The ap function is similar to map - we are still transforming a value in a context.
   * (A context may be an Option, List or Future)
-  * The difference is that for ap, the function that does the tranformation is of type F[A => B] whereas for map it is A => B
+  * The difference is that for ap, the function that does the transformation is of type F[A => B] whereas for map it is A => B
   */
 
 

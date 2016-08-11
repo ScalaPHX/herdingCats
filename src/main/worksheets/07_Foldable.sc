@@ -36,7 +36,7 @@ Foldable[List].reduceRightToOption(List[Int]())(_.toString)((i,s) => Later(s.val
 Foldable[Set].find(Set(1,2,3))(_ > 2)
 Foldable[Set].find(Set(1,2,3))(_ > 0)
 
-// exists - checks whether at least one element satifies the predicate
+// exists - checks whether at least one element satisfies the predicate
 Foldable[Set].exists(Set(1,2,3))(_ > 2)
 
 // forall - checks whether all elements satisfy the predicate
@@ -47,7 +47,7 @@ Foldable[Vector].filter_(Vector(1,2,3))(_ < 3)
 // isEmpty - returns whether or no the F[A] is empty or not
 Foldable[List].isEmpty(List(1,2))
 Foldable[Option].isEmpty(None)
-// nonEmpty - opposie to isEmpty
+// nonEmpty - opposite to isEmpty
 Foldable[List].nonEmpty(List(1,2))
 // toList - convert F[A] to List[A]
 Foldable[Option].toList(None)

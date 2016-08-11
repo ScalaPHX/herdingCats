@@ -41,7 +41,7 @@ l.foldMap(i => (i, i.toString))
   * A MonoidK[F] can produce Monoid[F[A]] for any type A
   *
   * How to distinguish between the two...
-  *   - Monoid[A] - allows A values to be combined and means there's an empty A value that is an indentity
+  *   - Monoid[A] - allows A values to be combined and means there's an empty A value that is an identity
   *   - MonoidK[F] - allows two F[A] values to be combined for any A.  Also means that for any A there is an empty F[A] value.  The combine function and empty value depend on the structure of F but not on the structure of A
   *
   *   @see the Foldable.foldK sample ...
