@@ -120,7 +120,7 @@ def positive(field : String, i : Int) : ConfigError Xor Int = {
   else Xor.left(ParseError(field))
 }
 
-config.parse[Int]("house_number").withXor {
+config2.parse[Int]("house_number").withXor {
   xor => xor.flatMap {
     i => positive("house_number", i)
   }
